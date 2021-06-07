@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+         .cont form{
+            display: flex;
+            flex-direction: column;
+            width:17%;
+            margin:auto;
+            font-size: 1.2rem;
+            position: absolute;
+            top:20%;
+            left:41%;
+        }
+
+        input{
+            padding: 10px 20px;
+            margin-bottom: 20px;
+        }
+
+        button{
+            background-color: black;
+            border:none;
+            color:white;
+            padding: 10px 20px;
+            margin-bottom:50px;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cont">
+        <form id = "formL" onsubmit="return false">
+           Email: <input type="text" id = "email">
+           Password: <input type="password" id = "password">
+           <button onclick=" logIn()">Log In</button>
+        </form>
+    </div>
+    
+</body>
+</html>
+
+<script>
+    function logIn(){
+        var form = document.getElementById('formL');
+        var email = form.email.value;
+        var password = form.password.value;
+
+        var data = localStorage.getItem('sign')
+        data = JSON.parse(data)
+
+        if (email == "" || password == "") { alert('Mandatory fields cannot be empty!!') }
+
+        else {
+        data.forEach(element => {
+            
+
+                if(email == element.email && password == element.password){
+                    alert('Successfully Loggid In!');
+                    window.location.href = "menu.html"
+                
+            }
+        });
+        }
+        
+    }
+
+</script>

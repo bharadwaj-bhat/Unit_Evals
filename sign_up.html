@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        .cont form{
+            display: flex;
+            flex-direction: column;
+            width:17%;
+            margin:auto;
+            font-size: 1.2rem;
+            position: absolute;
+            top:20%;
+            left:41%;
+            color:white;
+        }
+        body{
+            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwZdkDxS22V9zZt50fqnEyQ2HtypYJMLEtFQ&usqp=CAU");
+            background-size: cover;
+        }
+
+        input{
+            padding: 10px 20px;
+            margin-bottom: 20px;
+        }
+
+        button{
+            background-color: rgb(65, 65, 65);
+            border:none;
+            color:white;
+            padding: 10px 20px;
+            margin-bottom:50px;
+            border-radius: 20px;
+        }
+
+        #ss {
+            background-color: rgba(0, 0, 0, 0.376);
+            width:100%;
+            height: 100vw;
+        }
+    </style>
+</head>
+<body>
+   <div id = "ss"> 
+    <div class="cont">
+        <form id ="formS" onsubmit = "return false">
+           Name: <input type="text" placeholder="John Snow" id = "name">
+           Email: <input type="text" placeholder="jognsnow@email.com" id = "email">
+           Password: <input type="password"  id="password" placeholder="1234">
+           <button id = "signBt" onclick=" signUp()">Sign Up</button>
+        </form>
+    </div>
+    </div>
+    
+    
+</body>
+</html>
+
+<script>
+
+    function signUp(){
+
+        var form = document.getElementById('formS')
+        var name = form.name.value;
+        var email = form.email.value;
+        var password = form.password.value;
+
+       if(name == "" || email == "" || password == ""){
+           alert("madatory fields cannot be empty")
+       }
+       else {
+           let sign = {
+               name,
+               email,
+               password
+           }
+
+           let arr ;
+           arr = localStorage.getItem('sign')
+
+           if(arr == null){
+               arr = []
+           }
+           else {
+               arr = JSON.parse(arr)
+           }
+
+           arr.push(sign)
+           localStorage.setItem('sign', JSON.stringify(arr))
+
+           window.location.href = 'log_in.html'
+       }
+
+        
+    }
+
+
+</script>

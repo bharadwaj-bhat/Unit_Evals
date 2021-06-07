@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Menu </title>
+    <style>
+        #cont {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-column-gap:80px;
+            grid-row-gap: 80px;
+            width: 90%;
+            margin:auto;
+            text-align: center;
+        }
+
+        #cont div{
+            width:100%;
+            text-align: center;
+            outline:1px solid rgb(235, 235, 235);
+        }
+
+        a{
+            text-decoration: none;
+            border:none;
+            padding: 20px 120px;
+            background-color: black;
+            border-radius: 50px 0px;
+            color: white;
+        }
+
+
+        .wrap{
+            margin-left: 40%;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        
+        button{
+            background-color: black;
+            border:none;
+            color:white;
+            padding: 10px 20px;
+            margin-bottom:10px;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    
+   <div class = "wrap">
+       <a href="cart.html"> Cart </a>
+    </div>
+    <div id ="cont"></div>
+
+
+</body>
+</html>
+<script>
+
+    var food = [
+        {
+            name:"Dish1",
+            disc: "lorem upsome onsectetur adipisicing elit. Pariatur eius",
+            time: "30-35mins",
+            image: "https://via.placeholder.com/150",
+            price: "250"
+
+        },
+
+          {
+            name: "Dish2",
+            disc: "lorem upsome onsectetur adipisicing elit. Pariatur eius",
+            time: "10-15mins",
+            image: "https://via.placeholder.com/150",
+            price: "250"
+
+        },
+
+          {
+            name: "Dish3",
+            disc: "lorem upsome onsectetur adipisicing elit. Pariatur eius",
+            time: "15-20mins",
+            image: "https://via.placeholder.com/150",
+            price: "250"
+
+        },
+
+          {
+            name: "Dish4",
+            disc: "lorem upsome onsectetur adipisicing elit. Pariatur eius",
+            time: "50-55mins",
+            image: "https://via.placeholder.com/150",
+            price: "250"
+
+        },
+
+          {
+            name: "Dish5",
+            disc: "lorem upsome onsectetur adipisicing elit. Pariatur eius",
+            time: "40-45mins",
+            image: "https://via.placeholder.com/150",
+            price: "250"
+
+        },
+
+          {
+            name: "Dish6",
+            disc: "lorem upsome onsectetur adipisicing elit. Pariatur eius",
+            time: "20-25mins",
+            image: "https://via.placeholder.com/150",
+            price: "250"
+
+        }
+    ]
+
+    var menu = localStorage.getItem('food')
+
+    if(menu == null){
+        localStorage.setItem('food', JSON.stringify(food))
+    }
+
+    menu = JSON.parse(menu)
+      menu.forEach(element => {
+          var cont = document.getElementById('cont');
+
+
+          var div = document.createElement('div');
+          
+          let img = document.createElement('img');
+          img.src = `${element.image}`
+
+          let p_name = document.createElement('p');
+          p_name.innerText = element.name;
+
+          p_price = document.createElement('p');
+          p_price.innerText = `Rs. ${element.price}`;
+
+          let p_disc = document.createElement('p');
+          p_disc.innerText = element.disc;
+
+          let p_time = document.createElement('p');
+          p_time.innerText =  `availble within: ${element.time}`;
+
+          let btn = document.createElement('button');
+          btn.innerText = "add to Cart";
+          btn.onclick = function cart() {
+              
+               let item = localStorage.getItem('cart')
+               if(item == null){
+                   item = [];
+               }
+               else {
+                   item = JSON.parse(item);
+               }
+               item.push(element);
+
+               localStorage.setItem('cart', JSON.stringify(item))
+          }
+
+
+          div.append(img , p_name, p_price , p_disc , p_time, btn);
+
+          cont.append(div);
+
+        
+      })
+
+     
+    
+</script>

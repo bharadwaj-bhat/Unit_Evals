@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Cart </title>
+
+    <style>
+
+        #cont {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-column-gap:80px;
+            grid-row-gap: 80px;
+            width: 90%;
+            margin:auto;
+            text-align: center;
+        }
+
+        img{
+            margin-top: 40px;
+        }
+
+        #cont div{
+            width:100%;
+            text-align: center;
+            outline:1px solid rgb(235, 235, 235);
+        }
+
+        button{
+            background-color: black;
+            border:none;
+            color:white;
+            padding: 10px 20px;
+            margin-bottom:50px;
+            border-radius: 20px;
+        }
+
+        body{
+            text-align: center;
+        }
+        h1 {
+            margin-top: 300px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    
+    <button onclick = "order()">Proceed with the order</button>
+    <div id="cont"></div>
+
+
+    
+</body>
+</html>
+
+<script>
+
+var cart = localStorage.getItem('cart');
+
+cart = JSON.parse(cart);
+
+cart.forEach(element => {
+    
+    var cont = document.getElementById('cont');
+
+    var div = document.createElement('div')
+
+    let img = document.createElement('img');
+    img.src = `${element.image}`
+
+    let p_name = document.createElement('p');
+    p_name.innerText = element.name;
+
+    let p_price = document.createElement('p');
+    p_price.innerText = `Rs. ${element.price}`
+
+    let p_disc = document.createElement('p');
+    p_disc.innerText = element.disc;
+
+    let p_time = document.createElement('p');
+    p_time.innerText = `availble within: ${element.time}`;
+
+    div.append(img, p_name , p_disc, p_time)
+
+    cont.append(div)
+});
+
+function order(){
+    //   cont.innerHTML = null;
+
+    alert("Order Placed");
+
+    var cont = document.getElementById('cont');
+    var body = document.querySelector('body')
+  
+
+    var h = document.createElement('h1');
+
+    setTimeout(function(){ alert('Your food is being cooked') 
+    body.innerHTML = null;
+    h.innerText = "Your food is being cooked...";
+    body.append(h)
+
+}, 3000);
+
+    setTimeout(function(){ alert('Your food is ready')
+     body.innerHTML = null;
+        h.innerText = "Your food is ready...";
+        body.append(h)
+
+}, 8000);
+
+    setTimeout(function(){ alert('Your food is out for delivery')
+     body.innerHTML = null;
+        h.innerText = "Your food is out for delivery...";
+        body.append(h)
+}, 1000);
+
+    setTimeout(function(){ alert('Food delivered')
+      body.innerHTML = null;
+        h.innerText = "Food Delivered, Thanks for choosing us :)";
+        body.append(h)
+
+
+}, 12000)
+}
+
+</script>
+
